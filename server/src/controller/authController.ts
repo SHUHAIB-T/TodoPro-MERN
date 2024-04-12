@@ -9,7 +9,7 @@ import axios from "axios";
  * @route    POST /api
  * @access   public
  */
-export const createUser = asyncHandler(
+export const createUser: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { email, password, name } = req.body;
     const existUser = await User.findOne({ email: email });
@@ -44,7 +44,7 @@ export const createUser = asyncHandler(
  * @route   POST /api/googleAuth
  * @access  PUBLIC
  */
-export const googleAuth = asyncHandler(
+export const googleAuth: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { accessToken } = req.body;
 
@@ -107,7 +107,7 @@ export const googleAuth = asyncHandler(
  * @route   POST /api/login
  * @access  PUBLIC
  */
-export const userLogin = asyncHandler(
+export const userLogin: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
