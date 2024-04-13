@@ -7,27 +7,29 @@ import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
-      <Provider store={store}>
-        <Routes>
-          <Route path="/*" element={<UserRoutes />} />
-        </Routes>
-      </Provider>
-      <Toaster
-        toastOptions={{
-          success: {
-            style: {
-              background: "black",
-              color: "white",
+      <div className="dark:bg-gray-800 bg-white">
+        <Provider store={store}>
+          <Routes>
+            <Route path="/*" element={<UserRoutes />} />
+          </Routes>
+        </Provider>
+        <Toaster
+          toastOptions={{
+            success: {
+              style: {
+                background: "black",
+                color: "white",
+              },
             },
-          },
-          error: {
-            style: {
-              background: "black",
-              color: "white",
+            error: {
+              style: {
+                background: "black",
+                color: "white",
+              },
             },
-          },
-        }}
-      />
+          }}
+        />
+      </div>
     </>
   );
 }

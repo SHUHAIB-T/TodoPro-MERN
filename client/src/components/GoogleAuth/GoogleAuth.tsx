@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { googleAuth } from "../../servieces/autthServiece";
 import { useEffect, useState } from "react";
 import { reset } from "../../features/authSlice";
-import Loader from "../Loader/Loader1/Loader1";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -16,7 +15,7 @@ export default function GoogleAuth({ method }: prop) {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const { isLoading, isError, user, isSuccess, errorMessage } = useAppSelector(
+  const { isError, user, isSuccess, errorMessage } = useAppSelector(
     (state) => state.auth
   );
 
@@ -55,14 +54,10 @@ export default function GoogleAuth({ method }: prop) {
     setIsSubmit(false);
   }, [data, dispatch, isSubmit]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
     <button
       onClick={() => login()}
-      className="flex gap-2 w-full items-center shadow font-medium text-slate-700 border py-1 justify-center rounded-md"
+      className="flex gap-2 my-3 w-[300px] items-center shadow font-medium text-slate-700 border py-1 justify-center rounded-md"
     >
       <img
         width="25"
