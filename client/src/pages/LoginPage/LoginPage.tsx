@@ -61,7 +61,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("login successfull");
+      toast.success("Login Success!");
       setSubmit(false);
     }
   }, [isSuccess]);

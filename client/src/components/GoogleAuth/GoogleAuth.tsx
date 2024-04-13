@@ -26,7 +26,6 @@ export default function GoogleAuth({ method }: prop) {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Login Success!");
       navigate("/");
       dispatch(reset());
     }
