@@ -7,6 +7,7 @@ import { IMyTodos, Itodo } from "../../types/todoTypes";
 import TodoCard from "../../components/TodoCard/TodoCard";
 import { Progress } from "flowbite-react";
 import NewCheckBox from "../../components/NewCheckBox/NewCheckBox";
+import Drawor from "../../components/Drawer/Drawor";
 
 export default function HomePage() {
   const [currentTodo, setCurrentTodo] = useState<IMyTodos | undefined>();
@@ -15,6 +16,7 @@ export default function HomePage() {
   const [progress, setProgress] = useState<number>(0);
 
   const [showCompleted, setShowCompleted] = useState<boolean>(true);
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [sort, setSort] = useState<string>("");
 
   useEffect(() => {
@@ -26,7 +28,6 @@ export default function HomePage() {
     if (sort === "priority" && currentTodo && todos) {
       const todo = todos?.find((e) => e._id === currentTodo?._id);
       if (todo) {
-        console.log("array is sorting");
         const sortedTodo = [...todo.todos].sort((todo1, todo2) => {
           const priorityOrder: {
             high: number;
@@ -119,16 +120,21 @@ export default function HomePage() {
 
   return (
     <>
-      <NavBar />
+      <NavBar setOpenDrawer={setOpenDrawer} />
+      <Drawor
+        openDrawer={openDrawer}
+        setCurrentTodo={setCurrentTodo}
+        setOpenDrawer={setOpenDrawer}
+      />
       <div className="pt-16 h-screen grid grid-cols-12">
-        <div className="col-span-3">
+        <div className="col-span-3 hidden md:inline-block">
           <SideBar setCurrentTodo={setCurrentTodo} />
         </div>
-        <div className="col-span-9 bg-white max-h-full overflow-y-scroll text-white dark:bg-gray-950/[0.8]">
-          <div className="flex mt-20 min-h-full flex-col">
+        <div className="md:col-span-9 col-span-12 bg-white max-h-full overflow-y-scroll text-white dark:bg-gray-950/[0.8]">
+          <div className="flex mt-28 sm:mt-20 min-h-full flex-col">
             {currentTodo && (
               <>
-                <div className="w-[75%] flex items-center px-5 pb-2 fixed border-b-2 bg-gray-200/[0.4] border-gray-300 justify-between dark:border-gray-800 dark:bg-gray-950/[0.6] backdrop-blur-sm top-16 z-50 h-16 ">
+                <div className="md:w-[75%] w-[100%] flex-wrap flex items-center px-5 pb-2 fixed border-b-2 bg-gray-200/[0.4] border-gray-300 justify-between dark:border-gray-800 dark:bg-gray-950/[0.6] backdrop-blur-sm top-16 z-50 h-28 md:h-16 ">
                   <div className="w-96 ps-4 text-gray-900 dark:text-gray-200">
                     <Progress
                       progressLabelPosition="inside"
@@ -142,7 +148,7 @@ export default function HomePage() {
                     />
                   </div>
                   <div
-                    className="p-3 cursor-pointer flex pt-6"
+                    className="p-3 md:w-52 w-15 cursor-pointer flex pt-6"
                     onClick={() => setShowCompleted((e) => !e)}
                   >
                     <NewCheckBox checked={showCompleted} />
@@ -155,7 +161,7 @@ export default function HomePage() {
                       name="sort"
                       value={sort}
                       onChange={(e) => setSort(e.target.value)}
-                      className={`rounded me-5 mt-3 text-gray-800 dark:text-gray-200 dark:bg-gray-800 py-1`}
+                      className={`rounded md:w-44 w-20 me-5 mt-3 text-gray-800 dark:text-gray-200 dark:bg-gray-800 py-1`}
                     >
                       <option value="">-sort-</option>
                       <option value="priority">SortBy: priority</option>
@@ -168,7 +174,7 @@ export default function HomePage() {
             {currentTodo &&
               currentTodo.todos.map((e) => (
                 <>
-                  <div className="flex px-10 py-2 overflow-auto flex-col ">
+                  <div className="flex px-3 md:px-10 py-2 overflow-auto flex-col ">
                     <TodoCard
                       description={e.description}
                       dueDate={e.dueDate}
