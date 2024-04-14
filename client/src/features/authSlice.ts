@@ -21,6 +21,8 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null;
       localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      localStorage.removeItem("todos");
       window.location.reload();
     },
     reset: (state) => {
@@ -44,6 +46,7 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         localStorage.setItem("user", JSON.stringify(action.payload.user));
         localStorage.setItem("token", JSON.stringify(action.payload.token));
+        window.location.reload();
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -59,6 +62,7 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         localStorage.setItem("user", JSON.stringify(action.payload.user));
         localStorage.setItem("token", JSON.stringify(action.payload.token));
+        window.location.reload();
       })
       .addCase(signup.rejected, (state, action) => {
         state.isError = true;
@@ -74,6 +78,7 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         localStorage.setItem("user", JSON.stringify(action.payload.user));
         localStorage.setItem("token", JSON.stringify(action.payload.token));
+        window.location.reload();
       })
       .addCase(googleAuth.rejected, (state, action) => {
         state.isError = true;

@@ -21,6 +21,9 @@ export const validate = (name: string, value: unknown): string => {
     case "passwordLogin":
       if (!value || value === "") return "Password is required!";
       return "";
+    case "required":
+      if (!value || value === "") return "required!";
+      return "";
     default:
       return "";
   }
