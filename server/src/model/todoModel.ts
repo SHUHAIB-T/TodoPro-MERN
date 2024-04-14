@@ -1,6 +1,7 @@
-import { Schema, model } from "mongoose";
+import mongoose, { ObjectId, Schema, model } from "mongoose";
 
 export interface Itodo {
+  userId: ObjectId;
   title: string;
   description: string;
   dueDate: Date;
@@ -15,6 +16,7 @@ const todoSchema = new Schema<Itodo>(
     dueDate: { type: Date, required: true },
     priority: { type: String, required: true, enum: ["low", "medium", "high"] },
     isCompleted: { type: Boolean, required: true, default: false },
+    userId: { type: mongoose.Types.ObjectId, required: true },
   },
   {
     timestamps: true,

@@ -1,6 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import asyncHandler from "express-async-handler";
-import Todo, { Itodo } from "../model/todoModel";
+import Todo from "../model/todoModel";
+import { IUser } from "../model/userModel";
 
 /**
  * @disc    create todo
@@ -15,6 +16,7 @@ export const createTodo: RequestHandler = asyncHandler(
       description: description,
       dueDate: dueDate,
       priority: priority,
+      userId: req.user ? req.user._id : "",
     });
     if (newTodo) {
       res.status(200).json({
