@@ -7,6 +7,7 @@ export interface Itodo {
   dueDate: string;
   isCompleted?: boolean;
   _id?: string;
+  createdAt?: string;
 }
 
 export interface IMyTodos {

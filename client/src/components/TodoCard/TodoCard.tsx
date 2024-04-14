@@ -70,7 +70,7 @@ export default function TodoCard({
         currentTodo={currentTodo}
         setCurrentTodo={setCurrentTodo}
       />
-      <div className="dark:bg-gray-600/[0.4] bg-gray-100 ring-gray-300 todo-card relative ring-1  dark:ring-gray-700 p-3 text-gray-600 dark:text-teal-50 rounded-md flex justify-between">
+      <div className="dark:bg-gray-600/[0.4] flex-shrink-0 bg-gray-100 ring-gray-300 todo-card relative ring-1  dark:ring-gray-700 p-3 text-gray-600 h-fit dark:text-teal-50 rounded-md flex justify-between">
         <div className="flex">
           <div
             className="cursor-pointer w-fit p-3"
