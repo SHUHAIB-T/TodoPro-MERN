@@ -6,7 +6,7 @@ export default function ThemeToggleButton() {
       className="h-10 w-10 rounded-lg p-2 hover:bg-gray-200 dark:hover:bg-gray-700"
     >
       <svg
-        className="fill-violet-700 block dark:hidden"
+        className="fill-cyan-600 block dark:hidden"
         fill="currentColor"
         viewBox="0 0 20 20"
       >

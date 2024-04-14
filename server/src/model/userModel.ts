@@ -1,13 +1,19 @@
-import { Schema, model } from "mongoose";
+import mongoose, { ObjectId, Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
 
 export interface IUser {
+  _id?: mongoose.Types.ObjectId;
   name: string;
   email: string;
   password: string;
   profile: string;
   matchPassword(Password: string): Promise<boolean>;
 }
+export type user = mongoose.Document<unknown, IUser> &
+  IUser &
+  Required<{
+    _id: mongoose.mongo.BSON.ObjectId;
+  }>;
 
 const userSchema = new Schema<IUser>(
   {
