@@ -10,10 +10,12 @@ import toast from "react-hot-toast";
 import { useAppDispatch } from "../../redux/store";
 import { getAllMytodos } from "../../servieces/todoServiece";
 import { formatDate } from "../../utils/formatData";
+import EditTodoMdal from "../EditTodoMdal/EditTodoMdal";
 
 interface prop extends Itodo {
   setCurrentTodo: Dispatch<SetStateAction<IMyTodos | undefined>>;
   currentTodo: IMyTodos;
+  todos: Itodo[];
 }
 export default function TodoCard({
   title,
@@ -24,9 +26,12 @@ export default function TodoCard({
   isCompleted,
   setCurrentTodo,
   currentTodo,
+  todos,
 }: prop) {
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openEditModal, setEditOpenModal] = useState<boolean>(false);
   const [deleteId, setDeleteId] = useState<string>("");
+  const [editTodo, setEditTodo] = useState<Itodo>();
   const [completed, setCompleted] = useState<boolean>(
     isCompleted as unknown as boolean
   );
@@ -52,6 +57,11 @@ export default function TodoCard({
   }
   return (
     <>
+      <EditTodoMdal
+        editTodo={editTodo}
+        openModal={openEditModal}
+        setOpenModal={setEditOpenModal}
+      />
       <ConformDeleteModal
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -100,7 +110,12 @@ export default function TodoCard({
           >
             <DeleteIcon className="cursor-pointer  hover:text-red-500" />
           </div>
-          <div>
+          <div
+            onClick={() => {
+              setEditTodo(todos.find((e) => e._id === _id));
+              setEditOpenModal(true);
+            }}
+          >
             <ModeEditIcon className="cursor-pointer hover:text-blue-600" />
           </div>
         </div>

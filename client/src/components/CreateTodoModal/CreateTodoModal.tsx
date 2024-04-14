@@ -136,7 +136,7 @@ export default function CreateTodoModal({ openModal, setOpenModal }: Prop) {
         setOpenModal(false);
       }}
     >
-      <Modal.Header>Create Todo</Modal.Header>
+      <Modal.Header>Edit Todo</Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit} className="grid gap-2 grid-cols-2">
           <div className="col-span-2 gap-2 flex flex-col">

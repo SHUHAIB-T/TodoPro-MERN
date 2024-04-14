@@ -20,7 +20,14 @@ export default function HomePage() {
       setCurrentTodo(todos?.find((e) => e._id === currentTodo?._id));
     }
   }, [todos, currentTodo]);
-  
+
+  useEffect(() => {
+    if (todos) {
+      setCurrentTodo(todos[0]);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -42,6 +49,7 @@ export default function HomePage() {
                     _id={e._id}
                     setCurrentTodo={setCurrentTodo}
                     currentTodo={currentTodo}
+                    todos={currentTodo.todos}
                   />
                 </>
               ))}
