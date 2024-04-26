@@ -44,12 +44,12 @@ TodoPro is an advanced todo application built with React.js, Node.js, Express, a
 ## UI demo
   <p align="center">
     <picture>
-    <img alt="tutornest" src="./screenshorts/todo%20dark.png" width=90%>
+    <img alt="tutornest" src="https://github.com/SHUHAIB-T/TodoPro-MERN/blob/main/screenshorts/todo%20dark.png" width=90%>
     </picture>
 </p>
 <p align="center">
     <picture>
-    <img alt="tutornest" src="./screenshorts/todo%20light.png" width=90%>
+    <img alt="tutornest" src="https://github.com/SHUHAIB-T/TodoPro-MERN/blob/main/screenshorts/todo%20light.png" width=90%>
     </picture>
 </p>
 
